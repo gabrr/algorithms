@@ -1,3 +1,5 @@
+// It shows the values differences between two arrays
+
 function diffArray(arr1, arr2) {
     let firstTo = arr1.map((v, i) => {
         return arr2.indexOf(v) === -1 ? v : false

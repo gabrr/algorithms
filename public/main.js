@@ -6,7 +6,7 @@ const intervals = [
     [7, 28],
     [98, 111],
     [63, 69],
-    [199, 201]
+    [10, 201]
 ]
 
 const zeroCounter = input => {

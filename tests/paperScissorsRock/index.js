@@ -5,7 +5,7 @@ let compPoints = 0
 
 const highlight = (e, time = 300) => {
     e.classList.add("clicked");
-    setInterval(() => {
+    setTimeout(() => {
         e.classList.remove("clicked");
     }, time)
 }

@@ -1,27 +1,28 @@
 {
-    "name": "algorithms",
-    "version": "1.0.0",
-    "description": "To practice and to store challenges code I've done",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "nodemon index.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "algorithms"
-    },
-    "keywords": [
-        "javascript",
-        "vanilla",
-        "node",
-        "js"
-    ],
-    "author": "gabrr",
-    "license": "ISC",
-    "dependencies": {
-        "express": "^4.17.1",
-        "moment": "^2.27.0",
-        "nodemon": "^2.0.4"
-    }
+  "name": "algorithms",
+  "version": "1.0.0",
+  "description": "To practice and to store challenges code I've done",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "algorithms"
+  },
+  "keywords": [
+    "javascript",
+    "vanilla",
+    "node",
+    "js"
+  ],
+  "author": "gabrr",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jest": "^26.6.3",
+    "moment": "^2.27.0",
+    "nodemon": "^2.0.4"
+  }
 }

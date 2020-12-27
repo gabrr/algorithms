@@ -2,9 +2,12 @@
 function spinalCase(str) {
     return str.split(/(?=[A-Z])|[_]|[\s]/).join('-').toLowerCase();
 }
-  
+
+
+
 spinalCase('This Is Spinal Tap');
 
+module.exports = spinalCase
 // spinalCase("This Is Spinal Tap") should return "this-is-spinal-tap".
 // Passed
 // spinalCase("thisIsSpinalTap") should return "this-is-spinal-tap".

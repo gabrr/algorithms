@@ -3,7 +3,8 @@ const input = {
   contacts: {
     location: { countries: [], states: [], cities: [] },
     titles: { include: null, exclude: null },
-    seniorities: { include: null, exclude: [4] }
+    seniorities: { include: null, exclude: [4] },
+		testing: true
   },
   flowId: null,
   emptyString: "",
@@ -61,14 +62,14 @@ const removeEmptyValuesDeep = (input) => {
 		if (isAnObject(data)) {
 			Object.entries(data).forEach(([level1key, level1data]) => {
 				if (!isAnObject(level1data) && isValid(level1data)) {
-					insertingBase[key] = {}
+					if (!isAnObject(insertingBase[key])) insertingBase[key] = {}
 					insertingBase[key][level1key] = level1data
 				}
 				if (isAnObject(level1data)) {
 					Object.entries(level1data).forEach(([level2key, level2data]) => {
 						if (!isAnObject(level2data) && isValid(level2data)) {
-							insertingBase[key] = {}
-							insertingBase[key][level1key] = {}
+							if (!isAnObject(insertingBase[key])) insertingBase[key] = {}
+							if (!isAnObject(insertingBase[key][level1key])) insertingBase[key][level1key] = {}
 							insertingBase[key][level1key][level2key] = level2data
 						}
 					})

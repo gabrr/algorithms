@@ -1,7 +1,7 @@
 const input = {
   customAudienceType: "FIRMOGRAPHIC_EXCLUDE",
   contacts: {
-    location: { countries: [], states: [], cities: [] },
+    location: { countries: [], states: [3], cities: [] },
     titles: { include: null, exclude: null },
     seniorities: { include: null, exclude: [4] },
 		testing: true

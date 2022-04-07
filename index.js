@@ -2,9 +2,9 @@ const express = require('express')
 const app = express()
 const path = require('path')
 app.use(express.static('public'))
-const { removing } = require('./tests/removeEmptyValues')
+const { test } = require('./tests/findMissingLetter')
 
-console.log("result: ", removing.result)
+console.log("result: ", test)
 
 
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, "public/index.html")))

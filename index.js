@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const path = require('path')
 app.use(express.static('public'))
-const test = require('./tests/sortedUnion')
+const test = require('./tests/convertHTMLEntities')
 
 console.log("result: ", test)
 

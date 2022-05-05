@@ -48,6 +48,7 @@ const importCombiner = (string) => {
 };
 
 const fromClassesToComponent = (string = "") => {
+  if (!string) return "";
   const classes = {};
 
   let reference = "";
@@ -75,37 +76,69 @@ ${line}`;
 const divWithClassToComponent = (string = "") => {
   const lines = string.split(/\n/);
 
-  const scope = {};
-  let reference = {};
+  let scope = ``;
+  const reference = { key: [], columns: [] };
 
-  lines.forEach((line) => {
-    const start = line.match(/(<div className=")(.*)(")/);
+  lines.forEach((line, i) => {
+    const start = line.match(
+      /(<div className={classes.|<ul className={classes.|<li className={classes.|<p className={classes.)(.*)(})/
+    );
     const end = line.match(/<\/div/);
     const columns = line.match(/\t/g)?.length || 0;
 
     if (start) {
       const keyCapitalized = capitalize(start[2]);
-      scope[keyCapitalized] = `<${keyCapitalized}>`;
-      reference.key = keyCapitalized;
-      reference.columns = columns;
+      !scope
+        ? (scope = `<${keyCapitalized}>`)
+        : (scope = `${scope}
+<${keyCapitalized}>`);
+
+      reference.key.push(keyCapitalized);
+      reference.columns.push(columns);
       return;
     }
 
-    if (end && columns === reference.columns) {
-      scope[reference.key] = `${scope[reference.key]}
-</${reference.key}>`;
+    const lastKeyAdded = reference.key.slice(-1)[0];
+    const lastColumnsAdded = reference.columns.slice(-1)[0];
+
+    if (end && columns === lastColumnsAdded) {
+      scope = `${scope}
+</${lastKeyAdded}>`;
+
+      reference.key = reference.key.slice(0, -1);
+      reference.columns = reference.columns.slice(0, -1);
       return;
     }
 
-    scope[reference.key] = `${scope[reference.key]}
+    scope = `${scope}
 ${line}`;
   });
 
   return Object.values(scope).join("");
 };
 
+const fromOldJssToComponent = (string = "") => {
+  string.split(/\n/).forEach((l) => {
+    const match = l.match(/.*(classes.)(.*)(}.*)/);
+    if (match) {
+      console.log(`const ${capitalize(match[2])} = styled("div")\``);
+      return;
+    }
+
+    const line = l
+      .replace(",", ";")
+      .replace(/"/g, "")
+      .replace(/([A-Z])/g, "-$1")
+      .replace(/};/, "`")
+      .toLowerCase();
+
+    console.log(line);
+  });
+};
+
 module.exports = {
   importCombiner,
   fromClassesToComponent,
   divWithClassToComponent,
+  fromOldJssToComponent,
 };

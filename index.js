@@ -1,14 +1,12 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const test = require('./tests/SnakeDashUnderline')
 app.use(express.static("public"));
-const test = require("./tests/refactorHelper");
 
-test.fromOldJssToComponent(``);
+test.fromSpaceToUnderlineLowercase("Test Case With Space")
+test.fromUnderlineToSpaceUpercase("test_case_with_space")
 
-console.log(test.divWithClassToComponent(``));
-
-console.log(test.fromClassesToComponent(``));
 
 app.get("/", (req, res) =>
   res.sendFile(path.join(__dirname, "public/index.html"))

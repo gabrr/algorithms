@@ -12,6 +12,7 @@ linkedList.next.next.next = new ListNode(8);
 linkedList.next.next.next.next = new ListNode(10);
 
 //2 > 4 > 6 > 8 > 10 > null;
+//null < 2 < 4 < 6 < 8 < 10;
 
 //2 > null;
 //4 > 2;
@@ -24,24 +25,24 @@ linkedList.next.next.next.next = new ListNode(10);
 // * @param {ListNode} head
 // * @return {ListNode}
 // */
-//function solution(head = linkedList) {
-//  let prev = null;
-//  let current = head;
+function solution(head = linkedList) {
+  let prev = null;
+  let current = head;
 
-//  while (current !== null) {
-//    //find the next
-//    const next = head.next;
+  while (current !== null) {
+    //find the next
+    const next = head.next;
 
-//    //modify the next to the previous
-//    current.next = prev;
+    //modify the next to the previous
+    current.next = prev;
 
-//    //save that change
-//    prev = current;
+    //save that change
+    prev = current;
 
-//    //restore the state and update with the next value.
-//    current = next;
-//  }
-//}
+    //restore the state and update with the next value.
+    current = next;
+  }
+}
 
 /**
  * @param {ListNode} head

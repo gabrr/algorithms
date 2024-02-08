@@ -1,10 +1,27 @@
+//2024 code
 function fizzBuzz(n) {
-    // Write your code here
-    for (let i = 1; i <= n; i++) {
-        let fz = ((i / 3) % 1 === 0) ? 'Fizz' : ''
-        let bz = ((i / 5) % 1 === 0) ? 'Buzz' : ''
-        console.log((fz + bz) ? (fz + bz) : i)   
-    }
+  // Write your code here
+  const operate = (number) => {
+    let result = "";
+
+    if (number % 3 === 0) result += "Fizz";
+    if (number % 5 === 0) result += "Buzz";
+
+    return result || number;
+  };
+
+  for (let i = 1; i <= n; i++) {
+    console.log(operate(i));
+  }
+}
+
+function fizzBuzz(n) {
+  // Write your code here
+  for (let i = 1; i <= n; i++) {
+    let fz = (i / 3) % 1 === 0 ? "Fizz" : "";
+    let bz = (i / 5) % 1 === 0 ? "Buzz" : "";
+    console.log(fz + bz ? fz + bz : i);
+  }
 }
 
 //explanation

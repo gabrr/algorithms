@@ -1,28 +1,105 @@
-const { log } = require("console");
 const express = require("express");
 const app = express();
 const path = require("path");
 app.use(express.static("public"));
 
-function timeConversion(s) {
-  // Write your code here
-  const [hour, min, sec, time] = s.match(/(\d{2})|(AM|PM)/g);
-  let hourResult = hour;
+// * matches sequence any number
+// . any character individual
 
-  if (time === "PM") {
-    hourResult = hour != 12 ? Number(hour) + 12 : hour;
-  }
+/**
+ * first seeks for * and the matching characters, if not found then return false
+ * otherwise remove the corresponding strings from the equasion.
+ *
+ * second seeks for an additional random character by looking for the .
+ */
 
-  if (time === "AM") {
-    hourResult = hour == 12 ? "00" : hour;
-  }
+/**
+ * aaaabc
+ * a***bc
+ *
+ * bc
+ * bc
+ *
+ * a*.ght*
+ * aayghtt
+ *
+ * aa - and next char
+ * tt
+ *
+ * gh
+ */
 
-  return `${hourResult}:${min}:${sec}`;
-}
+const solution = (a, b) => {
+  const createStringOnPatternStar = (pattern = "") => {
+    let newString = "";
 
-log(timeConversion("01:45:54PM"));
+    pattern.split("").forEach((letter, index, array) => {
+      if (letter === "*") {
+        const lastLetter = newString.at(-1);
+        newString += lastLetter;
+      } else {
+        newString += letter;
+      }
+    });
+
+    return newString;
+  };
+
+  const findTheDotLetter = (pattern = "", word = "") => {
+    let newString = "";
+
+    pattern.split("").forEach((letter, index) => {
+      if (letter === ".") {
+        newString += word.at(index);
+      } else {
+        newString += letter;
+      }
+    });
+  };
+};
+
+//console.log(solution("aaaabc", "a***bc"));
+
+const findTheDotLetter = (pattern = "", word = "") => {
+  let newString = "";
+
+  pattern.split("").forEach((letter, index) => {
+    console.log(newString);
+
+    if (letter === ".") {
+      newString += word.at(index);
+    } else {
+      newString += letter;
+    }
+  });
+
+  return newString;
+};
+
+const createStringOnPatternStar = (pattern = "") => {
+  let newString = "";
+
+  pattern.split("").forEach((letter) => {
+    console.log(newString);
+
+    if (letter === "*") {
+      const lastLetter = newString.at(-1);
+      newString += lastLetter;
+    } else {
+      newString += letter;
+    }
+  });
+
+  return newString;
+};
+
+const stringOne = findTheDotLetter("a***abc", "aaaaabc");
+const stringTwo = createStringOnPatternStar(stringOne);
+
+console.log(stringTwo);
+console.log("aaaaabc" === stringTwo);
 
 app.get("/", (_, res) =>
   res.sendFile(path.join(__dirname, "public/index.html"))
 );
-app.listen(3000, () => {});
+app.listen(13000, () => {});
